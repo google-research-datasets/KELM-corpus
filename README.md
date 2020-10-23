@@ -18,3 +18,7 @@ These are train, validation, and test sets, respectively. Each file contains "qu
 https://storage.googleapis.com/gresearch/kelm-corpus/kelm_generated_corpus.jsonl
 
 This corpus contains ~15M sentences synthetically generated using a T5 model fine-tuned on the data from Part 1. The format is JSONL i.e. JSON in every line.  The generated sentence corresponds to the "candidate" field and the reference Wikidata triple corresponds to the "reference" field.
+
+### License
+
+This dataset has been released under the [CC BY-SA 2.0 license](https://creativecommons.org/licenses/by-sa/2.0/).
