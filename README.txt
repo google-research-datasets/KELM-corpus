@@ -9,8 +9,8 @@ The training corpus consists of 3 files:
 1. https://storage.googleapis.com/gresearch/kelm-corpus/quadruples-train.tsv
 2. https://storage.googleapis.com/gresearch/kelm-corpus/quadruples-validation.tsv
 3. https://storage.googleapis.com/gresearch/kelm-corpus/quadruples-test.tsv
-These are train, validation, and test sets, respectively. Each file contains "quadruples", i.e. Wikidata triples along with a corresponding Wikipedia sentence. The first column of each tsv file is the Wikidata triple, and the second column is the Wikipedia sentence. Note that the Wikidata triples are of the form "<subject> <relation> <object>" where some relations have sub-relations, e.g. "<subject> <relation> <object1> <sub-relation1> <object2> <sub-relation2> <object3>". For more details please refer to the paper mentioned earlier.
+These are train, validation, and test sets, respectively. Each file contains "quadruples", i.e. Wikidata triples along with a corresponding Wikipedia sentence. The first column of each tsv file is the Wikidata triple, and the second column is the Wikipedia sentence. Note that the Wikidata triples are of the form "<subject> <relation> <object>" where some subjects have multiple relations, e.g. "<subject> <relation1> <object1> <relation2> <object2> <relation3> <object3>". For more details on how these relations are grouped, please refer to the paper mentioned earlier.
 
 Part 2: Generated corpus
 https://storage.googleapis.com/gresearch/kelm-corpus/kelm_generated_corpus.jsonl
-This corpus contains ~15M sentences synthetically generated using a T5 model fine-tuned on the data from Part 1. The format is JSON with the generated sentence being in the "candidate" field and the reference Wikidata triple in the "reference" field.
+This corpus contains ~15M sentences synthetically generated using a T5 model fine-tuned on the data from Part 1. The format is JSONL i.e. JSON in every line.  The generated sentence corresponds to the "candidate" field and the reference Wikidata triple corresponds to the "reference" field.
