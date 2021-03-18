@@ -1,8 +1,6 @@
-# KELM Corpus
-
 For details describing the origin of this dataset, please refer to "<a href="https://arxiv.org/abs/2010.12688">Large Scale Knowledge Graph Based Synthetic Corpus Generation for Knowledge-Enhanced Language Model Pre-training</a>", Oshin Agarwal, Heming Ge, Siamak Shakeri, Rami Al-Rfou.
 
-This corpus consists of two parts: TEKGEN training corpus and the generated syntethic KELM corpus.
+This corpus consists of two parts: TEKGEN (**Te**xt From **KG Gen**eratiom) training corpus and the generated synthetic KELM (**K**nowledge **E**nhanced **L**anguage **M**odel Pre-training) corpus.
 
 ### Part 1: TEKGEN Training Corpus
 
@@ -19,7 +17,7 @@ This is a synthetic corpus that consists of the entire Wikidata KG as natural te
 
 https://storage.googleapis.com/gresearch/kelm-corpus/kelm_generated_corpus.jsonl
 
-This corpus contains ~15M sentences synthetically generated using a T5 model fine-tuned on the data from Part 1. The format is JSONL i.e. JSON in every line.  The generated sentence corresponds to the "candidate" field and the reference Wikidata triple corresponds to the "reference" field.
+This corpus contains ~15M sentences synthetically generated using a T5 model fine-tuned on the data from Part 1. The format is JSONL i.e. JSON in every line.  The "candidate" field contains the generated sentence and the "reference" field contains the input entity subgraph consisting of Wikidata triples.
 
 ### License
 
