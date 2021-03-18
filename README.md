@@ -1,4 +1,4 @@
-For details describing the origin of this dataset, please refer to "<a href="https://arxiv.org/abs/2010.12688">Large Scale Knowledge Graph Based Synthetic Corpus Generation for Knowledge-Enhanced Language Model Pre-training</a>", Oshin Agarwal, Heming Ge, Siamak Shakeri, Rami Al-Rfou.
+For details describing the origin of this dataset, please refer to "<a href="https://arxiv.org/abs/2010.12688">Knowledge Graph Based Synthetic Corpus Generation for Knowledge-Enhanced Language Model Pre-training</a>", Oshin Agarwal, Heming Ge, Siamak Shakeri, Rami Al-Rfou.
 
 This corpus consists of two parts: TEKGEN (**Te**xt From **KG Gen**eratiom) training corpus and the generated synthetic KELM (**K**nowledge **E**nhanced **L**anguage **M**odel Pre-training) corpus.
 
