@@ -1,23 +1,43 @@
-For details describing the origin of this dataset, please refer to "<a href="https://arxiv.org/abs/2010.12688">Knowledge Graph Based Synthetic Corpus Generation for Knowledge-Enhanced Language Model Pre-training</a>", Oshin Agarwal, Heming Ge, Siamak Shakeri, Rami Al-Rfou.
+For details describing the origin of this dataset, please refer to "<a href="https://www.aclweb.org/anthology/2021.naacl-main.278/">Knowledge Graph Based Synthetic Corpus Generation for Knowledge-Enhanced Language Model Pre-training</a>", Oshin Agarwal, Heming Ge, Siamak Shakeri, Rami Al-Rfou.
 
 This corpus consists of two parts: TEKGEN (**Te**xt From **KG Gen**eratiom) training corpus and the generated synthetic KELM (**K**nowledge **E**nhanced **L**anguage **M**odel Pre-training) corpus.
 
-### Part 1: TEKGEN Training Corpus
+## Part 1: TEKGEN Training Corpus
 
-This is the Wikipedia text--Wikidata KG aligned corpus used to train the data-to-text generation model. It consists of 3 files:
-1. https://storage.googleapis.com/gresearch/kelm-corpus/quadruples-train.tsv
-2. https://storage.googleapis.com/gresearch/kelm-corpus/quadruples-validation.tsv
-3. https://storage.googleapis.com/gresearch/kelm-corpus/quadruples-test.tsv
+This is the Wikipedia text--Wikidata KG aligned corpus used to train the data-to-text generation model. Please note that this is a corpus generated with distant supervision and should not be used as gold standard for evaluation.
 
-These are train, validation, and test sets, respectively. Each file contains "quadruples", i.e. Wikidata triples along with a corresponding Wikipedia sentence. The first column of each tsv file is the Wikidata triple, and the second column is the Wikipedia sentence. Note that the Wikidata triples are of the form "&lt;subject&gt; &lt;relation&gt; &lt;object&gt;" where some subjects have multiple relations, e.g. "&lt;subject&gt; &lt;relation1&gt; &lt;object1&gt; &lt;relation2&gt; &lt;object2&gt; &lt;relation3&gt; &lt;object3&gt;". For more details on how these relations are grouped, please refer to the paper mentioned earlier.
+It consists of 3 files:
+1. https://storage.googleapis.com/gresearch/kelm-corpus/updated-2021/quadruples-train.tsv
+2. https://storage.googleapis.com/gresearch/kelm-corpus/updated-2021/quadruples-validation.tsv
+3. https://storage.googleapis.com/gresearch/kelm-corpus/updated-2021/quadruples-test.tsv
 
-### Part 2: KELM Corpus
+Each file contains one example per line. Each example is a json object with three fields:
+1. triples: A list of triples of the form (subject, relation, object). eg. (Person X, award received, Award Y). If the triple has a subproperty, then it is quadruple instead. eg. (Person X, Award Y, received on, Date Z).
 
-This is a synthetic corpus that consists of the entire Wikidata KG as natural text sentences. It can be used as additional data in language model pre-training as a means to integrate KGs with natural text.
+2. serialized triples: triples concatenated together as used for input to T5. The format is "&lt;subject&gt; &lt;relation&gt; &lt;object&gt;" where some subjects have multiple relations, e.g. "&lt;subject&gt; &lt;relation1&gt; &lt;object1&gt; &lt;relation2&gt; &lt;object2&gt; &lt;relation3&gt; &lt;object3&gt;". For more details on how these relations are grouped, please refer to the paper.
 
-https://storage.googleapis.com/gresearch/kelm-corpus/kelm_generated_corpus.jsonl
+3. sentence: The wikipedia sentence aligned to these triples.
 
-This corpus contains ~15M sentences synthetically generated using a T5 model fine-tuned on the data from Part 1. The format is JSONL i.e. JSON in every line.  The "candidate" field contains the generated sentence and the "reference" field contains the input entity subgraph consisting of Wikidata triples.
+The names, aliases and Wikidata Ids of the entities can be found in https://storage.googleapis.com/gresearch/kelm-corpus/updated-2021/entities.jsonl.
+
+## Part 2: KELM Corpus
+
+This is a synthetic corpus that consists of the entire Wikidata KG as natural text sentences. It has ~15M sentences synthetically generated using a T5 model fine-tuned on the data from Part 1 with some additional components. It can be used as additional data in language model pre-training as a means to integrate KGs with natural text.
+
+https://storage.googleapis.com/gresearch/kelm-corpus/updated-2021/kelm_generated_corpus.jsonl
+
+Each line is an example as a json object with three fields:
+
+1. triples: A list of triples of the form (subject, relation, object). eg. (Person X, award received, Award Y). If the triple has a subproperty, then it is quadruple instead. eg. (Person X, Award Y, received on, Date Z). These triples are entity subgraphs as described in the paper.
+
+2. serialized triples: triples concatenated together as used for input to T5. The format is "&lt;subject&gt; &lt;relation&gt; &lt;object&gt;" where some subjects have multiple relations, e.g. "&lt;subject&gt; &lt;relation1&gt; &lt;object1&gt; &lt;relation2&gt; &lt;object2&gt; &lt;relation3&gt; &lt;object3&gt;". For more details on how these relations are grouped, please refer to the paper.
+
+3. gen_sentence: The generated natural language sentence for the triples.
+
+About 0.1% of the examples in kelm_generated_corpus.jsonl are missing the "triples" field.
+
+The names, aliases and Wikidata Ids of the entities can be found in https://storage.googleapis.com/gresearch/kelm-corpus/updated-2021/entities.jsonl.
+
 
 ### License
 
